@@ -1,15 +1,14 @@
 #include<stdio.h>
 
-int prime(n)
+int prime(int n)
 {
-    printf("no = %d", n);
     int i;
     for ( i = 2; i < n;i++)
     {
         if(n%i==0)
         {
-
-            break;
+            n++;
+            i = 2;
         }
     }
     if(i==n)
