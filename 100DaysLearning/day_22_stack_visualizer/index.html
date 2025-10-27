@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Stack Visualizer</title>
+  </head>
+  <body class="bg-gray-500">
+    <div class="w-full h-screen flex justify-center items-center">
+      <div
+        class="w-[800px] min-h-[500px] text-center p-4 shadow-2xl bg-gray-200 rounded-lg"
+      >
+        <h1 class="font-bold text-3xl">Stack Visualizer</h1>
+        <p class="font-semibold text-lg">It follows LIFO (Last In First Out)</p>
+
+        <!-- main section -->
+        <div class="flex mt-5 w-full gap-4 items-start">
+          <!-- left section: actions -->
+          <div class="border-2 flex flex-col p-4 w-70 rounded-lg min-h-[400px] bg-white">
+            <input
+              type="number"
+              class="w-full h-12 bg-gray-400 my-3 rounded-md text-white text-1xl border border-black p-2 text-center font-bold"
+              value=""
+              id="input-section"
+              placeholder="Enter number"
+            />
+
+            <button
+              class="mb-2 bg-green-700 text-white rounded p-2 hover:bg-green-600 cursor-pointer"
+              onclick="push()"
+            >
+              PUSH
+            </button>
+            <button
+              class="mb-2 bg-red-700 text-white rounded p-2 hover:bg-red-600 cursor-pointer"
+              onclick="pop()"
+            >
+              POP
+            </button>
+            <button
+              class="bg-yellow-700 text-white rounded p-2 hover:bg-yellow-600 cursor-pointer"
+              onclick="peek()"
+            >
+              PEEK
+            </button>
+
+
+            <div class="mt-10">
+                <p class="status text-1xl font-semibold"></p>
+            </div>
+          </div>
+
+          <!-- right section: stack container -->
+          <div
+            class="stack-container border-2 flex flex-col justify-end items-center p-3 bg-white rounded-lg w-full min-h-[400px] transition-all duration-300"
+          >
+            <p class="text-gray-500 italic">Stack is empty</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
