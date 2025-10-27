@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <h1 class="text-3xl font-bold text-center pt-10">Calculator</h1>
+
+    <div class="w-full h-screen justify-center items-center flex">
+      
+      <div
+        class="w-80 h-100 rounded-lg  p-2 bg-gray-700 -mt-40"
+      >
+        <input
+          type="text"
+          class="w-full h-12 p-2 text-white text-3xl font-bold bg-gray-500 rounded-md"
+          value="0"
+          id="input-section"
+        />
+
+        <div
+          class="mt-2 w-full h-80 grid grid-rows-5 gap-2 button-section"
+         
+        >
+          <!-- first row -->
+          <div class="grid grid-cols-4 gap-2">
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-orange-500 bg-orange-600 text-white"
+            >
+              AC
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              DEL
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              %
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              /
+            </button>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              7
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              8
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              9
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              +
+            </button>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              4
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              5
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              6
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              -
+            </button>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              1
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              2
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              3
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-blue-800 bg-blue-700 text-white"
+            >
+              *
+            </button>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <button
+              class="col-span-2 rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              0
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-gray-500 bg-gray-600 text-white"
+            >
+              .
+            </button>
+            <button
+              class="rounded-lg py-2 text-xl font-semibold hover:bg-orange-500 bg-orange-600 text-white"
+            >
+              =
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
