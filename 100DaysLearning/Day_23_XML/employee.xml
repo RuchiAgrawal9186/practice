@@ -1,0 +1,20 @@
+
+<employees xmlns="https://www.example.com/employee" xmlns:xsl="https://www.example.com/2025/XMLSchemas" xsi:schemaLocation="https://www.example.com/employee employee.xsd">
+    <employee status="active">
+    <name>ABC</name>
+    <age>20</age>
+    <email>abc@gmail.com</email>
+    <gender>Male</gender>
+    <phone>1234567890</phone>
+    <cityAddress>Ahemadabad</cityAddress>
+    </employee>
+
+    <employee status="Inactive">
+    <name>xyz</name>
+    <age>30</age>
+    <email>xyz@gmail.com</email>
+    <gender>Male</gender>
+    <phone>0123456789</phone>
+    <cityAddress>Baroda</cityAddress>
+    </employee>
+</employees>

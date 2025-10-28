@@ -1,0 +1,20 @@
+<!-- rules or validation for xml -->
+
+<xs:schema xmlns:xs="https://www.example.com/2025/XMLSchemas">
+<xs:element name="employees">
+<xs:complexType>
+<xs:element name="employee">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="name" type="xs:string"></xs:element>
+<xs:element name="age" type="xs:integer"></xs:element>
+<xs:element name="email" type="xs:string"></xs:element>
+<xs:element name="gender" type="xs:string"></xs:element>
+<xs:element name="phone" type="xs:integer"></xs:element>
+<xs:element name="cityAddress" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:complexType>
+</xs:element>
+</xs:schema>
