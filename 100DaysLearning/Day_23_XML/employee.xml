@@ -1,5 +1,8 @@
 
-<employees xmlns="https://www.example.com/employee" xmlns:xsl="https://www.example.com/2025/XMLSchemas" xsi:schemaLocation="https://www.example.com/employee employee.xsd">
+<employees xmlns="https://www.example.com/employee"
+           xmlns:xsl="https://www.example.com/2025/XMLSchemas"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://www.example.com/employee employee.xsd">
     <employee status="active">
     <name>ABC</name>
     <age>20</age>
