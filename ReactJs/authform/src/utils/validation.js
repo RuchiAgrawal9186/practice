@@ -12,13 +12,13 @@ export const validation = (formData, isLogin) => {
   // email validation for signup and login with regex
 
   if (!formData?.email?.trim()) {
-    newErrors.email = "email is required";
+    newErrors.email = "Email is required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
     newErrors.email = "Enter a valid email address";
   }
 
   // Password validation for signup and login with regex
-  if (!formData.password) {
+  if (!formData?.password) {
     newErrors.password = "Password is required";
   } else if (
     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
