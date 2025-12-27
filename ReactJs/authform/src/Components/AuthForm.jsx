@@ -159,7 +159,7 @@ const AuthForm = () => {
         </div>
 
         {/* Password */}
-        <div className="mb-5">
+        <div className="mb-4">
           <input
             type="password"
             placeholder="Enter password"
@@ -174,11 +174,19 @@ const AuthForm = () => {
         </div>
 
         {/* Forgot password */}
+
         {/* {isLogin && (
-          <div className="text-right mb-5">
-            <a href="#" className="text-sm text-blue-900 hover:underline">
+          <div className="text-right mb-5 -mt-3.5">
+            <button
+              type="button"
+              onClick={() => {
+                // handle forgot password logic here
+                alert("Forgot password clicked");
+              }}
+              className="text-sm text-blue-900 hover:underline bg-transparent border-none p-0 cursor-pointer"
+            >
               Forgot password?
-            </a>
+            </button>
           </div>
         )} */}
 
@@ -213,7 +221,7 @@ const AuthForm = () => {
               onClick={() => handleLoginCheck("signup")}
               className="text-blue-950 font-semibold hover:underline bg-transparent cursor-pointer"
             >
-              Sign Up
+              SignUp
             </button>
           </p>
         ) : (
