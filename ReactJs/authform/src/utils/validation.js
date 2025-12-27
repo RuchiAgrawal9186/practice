@@ -5,13 +5,21 @@ export const validation = (formData, isLogin) => {
   const newErrors = {};
 
   // name validation for signup
-  if (!isLogin && !formData?.name?.trim()) {
-    newErrors.name = "Name is required";
+
+  if (!isLogin) {
+    const name = formData?.name?.trim();
+    if (!name) {
+      newErrors.name = "Name is required";
+    } else if (name.length > 50) {
+      newErrors.name = "Name must not exceed 50 characters";
+    } else if (/\d/.test(name)) {
+      newErrors.name = "Name should not contain numbers";
+    }
   }
 
-  // email validation for signup and login with regex
-
   if (!formData?.email?.trim()) {
+    // email validation for signup and login with regex
+
     newErrors.email = "Email is required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
     newErrors.email = "Enter a valid email address";

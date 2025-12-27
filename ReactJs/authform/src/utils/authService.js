@@ -45,6 +45,9 @@ export const loginUser = (userData) => {
   if (user) {
     return { success: true, message: "Login successfully" };
   } else {
-    return { success: false, message: "Invalid email or password" };
+    return {
+      success: false,
+      message: "Invalid email or password / don't have account",
+    };
   }
 };
