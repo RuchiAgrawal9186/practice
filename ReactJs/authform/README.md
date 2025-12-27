@@ -67,10 +67,13 @@ src/
 ## ▶️ How to Run the Project
 
 1. Clone the repository
-  - git clone <repository-url>
+  - git clone <https://github.com/RuchiAgrawal9186/practice.git>
 
-2. Install dependencies
+2. move to project folder
+  - /authform  
+
+3. Install dependencies
   - npm install 
 
-3. Start the development server  
+4. Start the development server  
   - npm run dev
