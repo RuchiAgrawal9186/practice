@@ -47,7 +47,7 @@ src/
 ### Signup
 - User enters name, email, password, and confirm password
 - Validations applied:
-  - Name: required, min 3 chars, max 50 chars, no numbers
+  - Name: required, max 50 chars, no numbers
   - Email: valid email format
   - Password:
     - Minimum 6 characters

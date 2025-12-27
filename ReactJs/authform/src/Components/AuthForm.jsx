@@ -208,24 +208,24 @@ const AuthForm = () => {
         {isLogin ? (
           <p className="text-center text-sm text-gray-600 mt-4">
             Don&apos;t have an account?{" "}
-            <a
-              href="#"
-              className="text-blue-950 font-semibold hover:underline cursor-pointer"
+            <button
+              type="button"
               onClick={() => handleLoginCheck("signup")}
+              className="text-blue-950 font-semibold hover:underline bg-transparent cursor-pointer"
             >
-              SignUp
-            </a>
+              Sign Up
+            </button>
           </p>
         ) : (
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{" "}
-            <a
-              href="#"
-              className="text-blue-950 font-semibold hover:underline cursor-pointer"
+            <button
+              type="button"
               onClick={() => handleLoginCheck("login")}
+              className="text-blue-950 font-semibold hover:underline bg-transparent cursor-pointer"
             >
               Login
-            </a>
+            </button>
           </p>
         )}
       </div>
