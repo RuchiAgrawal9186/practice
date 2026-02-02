@@ -3,7 +3,7 @@ import { IconSquareRoundedPlus } from "@tabler/icons-react";
 import { IconCalendarEvent } from "@tabler/icons-react";
 import { IconPin } from "@tabler/icons-react";
 const DataTable = ({ rows }) => {
-  console.log(rows);
+
   return (
     <table className="w-full border text-sm table-auto border-2 table-fixed">
       <thead className="bg-gray-100">
