@@ -1,16 +1,75 @@
-# React + Vite
+# India Data Hub – React Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Demo:-** https://practice-26q6.vercel.app/login  
 
-Currently, two official plugins are available:
+This project is a sample **Product Catalogue Dashboard** built using **React.js** as part of an assignment.  
+It demonstrates authentication flow, dynamic data rendering, pagination, and performance optimization for large datasets.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Login Page
+- Simple login UI as per the provided design.
+- On successful login, user is redirected to the product catalogue page.
 
-## Expanding the ESLint configuration
+### 2. Product Catalogue Dashboard
+- Layout similar to the provided “Results” image.
+- **Left Sidebar**:
+  - Displays dataset categories.
+  - Data populated from `response1.json`.
+- **Right Panel**:
+  - Displays frequent datasets.
+  - Data populated from `Frequent` key in the JSON.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Pagination
+- Displays **10 records per page**.
+- Improves readability and performance.
+- Page navigation supported.
+
+### 4. Dataset Switch (IMF)
+- On selecting **IMF dataset**, data is loaded from `response2.json`.
+- This dataset contains a large number of records.
+
+### 5. Performance Optimization
+To handle large datasets efficiently:
+- Pagination implemented to limit DOM rendering.
+- `useMemo` and `useCallback` used to avoid unnecessary re-renders.
+- Optimized component structure to improve load time.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js 
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+- **Data Source**: Static JSON files (`response1.json`, `response2.json`)
+
+---
+
+## screenshots
+
+# Login page
+![alt text](image.png)
+
+# Dashboard page
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+
+---
+
+## ▶️ Getting Started
+
+### 1. Clone the Repository
+
+git clone https://github.com/RuchiAgrawal9186/practice.git
+cd reactjs/datamanage
+
+### 2. Install Dependencies
+npm install
+
+### 3. Run the Application
+npm run dev 
