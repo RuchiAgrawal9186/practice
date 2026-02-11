@@ -1,6 +1,6 @@
 # India Data Hub – React Assignment
 
-🔗 **Live Demo:-** https://practice-26q6.vercel.app/login  
+🔗 **Live Demo:-** https://practice-26q6.vercel.app/ 
 
 This project is a sample **Product Catalogue Dashboard** built using **React.js** as part of an assignment.  
 It demonstrates authentication flow, dynamic data rendering, pagination, and performance optimization for large datasets.
