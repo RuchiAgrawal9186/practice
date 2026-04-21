@@ -83,7 +83,15 @@ const About = () => {
     <section className="py-20 px-12 lg:px-20 bg-gray-50 flex flex-col lg:flex-row gap-16 lg:items-stretch">
       {/* THIS IS THE LEFT SIDE CONTAINER */}
       {/* We use flex-col on mobile/tablet and flex-row on desktop to align the box and text */}
-      <div className="flex-1 flex flex-col lg:flex-row gap-8">
+      <div className="flex-1 flex flex-col lg:flex-row gap-8 relative">
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+          <img
+            src="/map.jpg"
+            alt="map"
+            className="w-full h-full object-contain"
+          />
+        </div>
+
         {/* ABOUT FIRM BOX - Fixed position to the left */}
         <div className="bg-gray-200 p-8 w-full lg:w-40 h-50 font-bold text-lg shrink-0 rounded-3xl">
           ABOUT
