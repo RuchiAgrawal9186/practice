@@ -1,10 +1,10 @@
-.clip-hero {
+
+.clip-btn {
   clip-path: polygon(
-    0 0,
-    75% 0,
-    100% 50%,
-    75% 100%,
-    0 100%
+    0 0,        /* top-left */
+    100 10%,     /* top-right */
+    0 100%,   /* bottom-right (cut inside) */
+    0% 100%     /* bottom-left */
   );
 }
 @import "tailwindcss";
