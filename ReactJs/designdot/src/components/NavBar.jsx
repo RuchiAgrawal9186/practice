@@ -6,7 +6,6 @@ import { IconX } from "@tabler/icons-react";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
-    
     <nav className="bg-white border-b border-gray-200">
       <div className="max-w-8xl mx-auto px-4 h-[70px] flex items-center justify-between">
         {/* LEFT LOGO */}

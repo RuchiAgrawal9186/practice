@@ -9,7 +9,6 @@ const HotTopics = () => {
     "India Modernizes Maritime Law with Carriage of Goods by Sea Bill 2025",
   ];
   return (
-   
     <section className="bg-[#f5f5f5] py-2 ">
       {/* Main Container */}
       <div className="max-w-[94%] mx-auto px-4">
