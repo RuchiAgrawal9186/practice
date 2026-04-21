@@ -1,1 +1,11 @@
+.clip-hero {
+  clip-path: polygon(
+    0 0,
+    75% 0,
+    100% 50%,
+    75% 100%,
+    0 100%
+  );
+}
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
