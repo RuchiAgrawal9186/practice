@@ -42,7 +42,7 @@ const HotTopics = () => {
     //     </div>
     //   </div>
     // </section>
-    <section className="bg-[#f5f5f5] py-10 border-y">
+    <section className="bg-[#f5f5f5] py-2 ">
       {/* Main Container */}
       <div className="max-w-[94%] mx-auto px-4">
         {/* Responsive Layout: Flex Column on Mobile, Row on Desktop */}
