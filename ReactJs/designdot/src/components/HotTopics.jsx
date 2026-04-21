@@ -9,39 +9,7 @@ const HotTopics = () => {
     "India Modernizes Maritime Law with Carriage of Goods by Sea Bill 2025",
   ];
   return (
-    // <section className=" bg-[#f5f5f5] py-4 border-y ">
-    //   <div className="max-w-[94%] mx-auto px-4 flex items-center gap-6 overflow-x-auto">
-    //     {/* LEFT TAG */}
-    //     <div className="relative min-w-fit">
-    //       <button
-    //         className="bg-[#FF7A00] text-black flex items-center gap-3 px-8 py-3 font-bold uppercase text-[10px] tracking-wider transition-all hover:bg-orange-600 rounded-lg"
-    //         style={{
-    //           clipPath: "polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%)",
-    //         }}
-    //       >
-    //         <IconArrowNarrowRight className="w-5 h-5" />
-    //         Hot Topics
-    //       </button>
-    //     </div>
-    //     {/* TOPICS */}{" "}
-    //     <div className="flex gap-4 overflow-x-auto scrollbar-hide">
-    //       {topics.map((item, i) => (
-    //         <div
-    //           key={i}
-    //           className="min-w-[300px] bg-gray-50 p-4 rounded-md hover:shadow transition cursor-pointer"
-    //         >
-    //           {/* TOP UNDERLINE */}
-    //           <div className="w-full h-[4px] bg-blue-900 mb-3"></div>
-
-    //           {/* TEXT */}
-    //           <p className="text-1xl font-medium text-gray-500">{item}</p>
-
-    //           <IconArrowNarrowRight className="w-5 h-5" />
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </section>
+   
     <section className="bg-[#f5f5f5] py-2 ">
       {/* Main Container */}
       <div className="max-w-[94%] mx-auto px-4">
