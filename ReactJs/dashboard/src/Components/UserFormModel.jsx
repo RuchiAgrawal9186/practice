@@ -64,7 +64,10 @@ const UserFormModel = ({selectedUser,closeModal,refreshUsers}) => {
         if (selectedUser) {
           await updateUser(selectedUser.id, payload);
         } else {
-          await addUser(payload);
+            //   await addUser(payload);
+            const response = await addUser(payload);
+
+            refreshUsers(response.data);
         }
 
           refreshUsers();

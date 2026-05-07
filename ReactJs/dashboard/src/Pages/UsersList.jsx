@@ -49,7 +49,13 @@ const UsersList = () => {
        } finally {
          setLoading(false);
        }
-     };
+    };
+    
+    const addNewUserToList = (newUser) => {
+      setUsers((prev) => [newUser, ...prev]);
+
+      setFilteredUsers((prev) => [newUser, ...prev]);
+    };
 
 
      const handleSearch = async (value) => {
@@ -191,7 +197,7 @@ const UsersList = () => {
             setShowModal(false);
             setSelectedUser(null);
           }}
-          refreshUsers={fetchUsers}
+          refreshUsers={addNewUserToList}
         />
       )}
 
