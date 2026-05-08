@@ -73,15 +73,19 @@ button {
 }
 
 .table-wrapper {
+  width: 100%;
   overflow-x: auto;
+
+  background: white;
+  border-radius: 10px;
 }
 
 table {
   width: 100%;
-  background: white;
+  min-width: 900px;
+
   border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
+  background: white;
 }
 
 th,
@@ -89,16 +93,18 @@ td {
   padding: 14px;
   border-bottom: 1px solid #eee;
   text-align: left;
+  white-space: nowrap;
 }
 
 .avatar {
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
@@ -110,18 +116,27 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 15px;
+  z-index: 1000;
 }
 
 .modal {
   background: white;
+
+  width: 100%;
+  max-width: 500px;
+
+  border-radius: 12px;
+
   padding: 20px;
-  border-radius: 10px;
-  width: 30%;
+}
+.confirm-modal {
+  max-width: 380px;
 }
 
 .large-modal {
-  max-width: 900px;
-  max-height: 90vh;
+ max-height: 95vh;
   overflow-y: auto;
 }
 
@@ -191,12 +206,82 @@ td {
   }
 }
 
-@media(max-width:768px){
-  .top-controls{
+@media (max-width: 768px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .top-controls {
     flex-direction: column;
   }
 
-  button{
+  .top-controls input,
+  .top-controls select,
+  .top-controls button {
     width: 100%;
   }
+
+  table {
+    min-width: 750px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* .modal {
+    width: 100%;
+    max-width: 100%;
+
+    max-height: 100%;
+
+    border-radius: 0;
+
+    padding: 16px;
+  } */
+.modal-overlay {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .large-modal {
+    width: 100%;
+    max-width: 100%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    overflow-y: auto;
+  }
+
+ 
+  .confirm-modal {
+    max-width: 90%;
+    border-radius: 12px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons button {
+    width: 100%;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
 }

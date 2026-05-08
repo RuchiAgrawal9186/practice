@@ -103,8 +103,7 @@ const UserDetails = () => {
             University:
             {user.university}
           </p>
-              </div>
-              
+        </div>
       </div>
     </div>
   );

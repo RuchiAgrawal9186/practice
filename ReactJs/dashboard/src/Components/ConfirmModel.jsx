@@ -1,7 +1,7 @@
 const ConfirmModel = ({ onConfirm, onCancel }) => {
   return (
     <div className="modal-overlay">
-      <div className="modal">
+      <div className="modal confirm-modal">
         <h3>Delete User</h3>
 
         <p>Are you sure you want to delete this user?</p>

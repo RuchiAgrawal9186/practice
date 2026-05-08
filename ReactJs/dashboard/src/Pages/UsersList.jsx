@@ -3,57 +3,55 @@ import ConfirmModel from "../Components/ConfirmModel";
 import Loader from "../Components/Loader";
 import UserFormModel from "../Components/UserFormModel";
 import UserTable from "../Components/UserTable";
-import {  getUsers, searchUsers } from "../utils/api";
-
+import { getUsers, searchUsers } from "../utils/api";
 
 const UsersList = () => {
-     const [users, setUsers] = useState([]);
-     const [filteredUsers, setFilteredUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
-     const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-     const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
-     const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-     const [genderFilter, setGenderFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
 
-     const [sortName, setSortName] = useState("");
+  const [sortName, setSortName] = useState("");
 
-     const [sortAge, setSortAge] = useState("");
+  const [sortAge, setSortAge] = useState("");
 
-     const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-     const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const [deleteId, setDeleteId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const usersPerPage = 10;
 
+  async function fetchUsers() {
+    try {
+      setLoading(true);
 
-    useEffect(() => {
-      fetchUsers();
-    }, []);
-    
-     async function fetchUsers () {
-       try {
-         setLoading(true);
+      const response = await getUsers();
 
-         const response = await getUsers();
+      setUsers(response.data.users);
+      setFilteredUsers(response.data.users);
 
-         setUsers(response.data.users);
-         setFilteredUsers(response.data.users);
+      setError("");
+    } catch (err) {
+      console.log(err);
+      setError("Failed to load users");
+    } finally {
+      setLoading(false);
+    }
+  }
 
-         setError("");
-       } catch (err) {
-         console.log(err);
-         setError("Failed to load users");
-       } finally {
-         setLoading(false);
-       }
-    };
-    
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   const refreshUsers = (userData, isEdit) => {
     if (isEdit) {
       const updatedUsers = users.map((user) =>
@@ -70,75 +68,73 @@ const UsersList = () => {
     }
   };
 
+  const handleSearch = async (value) => {
+    setSearch(value);
 
-     const handleSearch = async (value) => {
-       setSearch(value);
+    if (!value) {
+      setFilteredUsers(users);
+      return;
+    }
 
-       if (!value) {
-         setFilteredUsers(users);
-         return;
-       }
+    try {
+      const response = await searchUsers(value);
 
-       try {
-         const response = await searchUsers(value);
-
-         setFilteredUsers(response.data.users);
-       } catch (error) {
-         console.log(error);
-       }
-     };
-
-     const handleGenderFilter = (gender) => {
-       setGenderFilter(gender);
-
-       if (!gender) {
-         setFilteredUsers(users);
-         return;
-       }
-
-       const filtered = users.filter((user) => user.gender === gender);
-
-       setFilteredUsers(filtered);
-     };
-
-     const handleSortName = (type) => {
-       setSortName(type);
-
-       let sorted = [...filteredUsers];
-
-       sorted.sort((a, b) => {
-         const nameA = a.firstName + " " + a.lastName;
-
-         const nameB = b.firstName + " " + b.lastName;
-
-         return type === "asc"
-           ? nameA.localeCompare(nameB)
-           : nameB.localeCompare(nameA);
-       });
-
-       setFilteredUsers(sorted);
-     };
-
-     const handleSortAge = (type) => {
-       setSortAge(type);
-
-       let sorted = [...filteredUsers];
-
-       sorted.sort((a, b) => (type === "low" ? a.age - b.age : b.age - a.age));
-
-       setFilteredUsers(sorted);
-     };
-
-     const handleDelete = () => {
-       const updatedUsers = users.filter((user) => user.id !== deleteId);
-
-       setUsers(updatedUsers);
-
-       setFilteredUsers(updatedUsers);
-
-       setDeleteId(null);
+      setFilteredUsers(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  
+
+  const handleGenderFilter = (gender) => {
+    setGenderFilter(gender);
+
+    if (!gender) {
+      setFilteredUsers(users);
+      return;
+    }
+
+    const filtered = users.filter((user) => user.gender === gender);
+
+    setFilteredUsers(filtered);
+  };
+
+  const handleSortName = (type) => {
+    setSortName(type);
+
+    let sorted = [...filteredUsers];
+
+    sorted.sort((a, b) => {
+      const nameA = a.firstName + " " + a.lastName;
+
+      const nameB = b.firstName + " " + b.lastName;
+
+      return type === "asc"
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
+    });
+
+    setFilteredUsers(sorted);
+  };
+
+  const handleSortAge = (type) => {
+    setSortAge(type);
+
+    let sorted = [...filteredUsers];
+
+    sorted.sort((a, b) => (type === "low" ? a.age - b.age : b.age - a.age));
+
+    setFilteredUsers(sorted);
+  };
+
+  const handleDelete = () => {
+    const updatedUsers = users.filter((user) => user.id !== deleteId);
+
+    setUsers(updatedUsers);
+
+    setFilteredUsers(updatedUsers);
+
+    setDeleteId(null);
+  };
 
   const indexOfLastUser = currentPage * usersPerPage;
 
@@ -246,6 +242,6 @@ const UsersList = () => {
       )}
     </>
   );
-}
+};
 
-export default UsersList
+export default UsersList;
