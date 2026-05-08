@@ -26,6 +26,17 @@ A responsive React.js dashboard to manage users using DummyJSON API.
 - Axios
 - CSS
 
+## images 
+
+# Dashboard
+![alt text](image.png)
+
+# Add/Edit user 
+![alt text](image-1.png)
+
+# userDetails page
+![alt text](image-2.png)
+
 ## API Used
 
 https://dummyjson.com/users
@@ -33,8 +44,10 @@ https://dummyjson.com/users
 ## Run Project
 
 ```bash
+git clone YOUR_GITHUB_REPO_LINK
+cd user-management-dashboard
 npm install
-npm run dev ```
+npm run dev
 
 ## folder structure
 
