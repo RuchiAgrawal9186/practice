@@ -47,7 +47,7 @@ https://dummyjson.com/users
 git clone YOUR_GITHUB_REPO_LINK
 cd user-management-dashboard
 npm install
-npm run dev
+npm run dev ```
 
 ## folder structure
 
