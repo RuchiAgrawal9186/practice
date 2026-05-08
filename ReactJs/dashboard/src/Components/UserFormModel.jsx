@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { addUser, updateUser } from "../utils/api";
+// import { addUser, updateUser } from "../utils/api";
+// import { v4 as uuidv4 } from 'uuid';
 
 
-const UserFormModel = ({selectedUser,closeModal,refreshUsers}) => {
+const UserFormModel = ({ selectedUser, closeModal, refreshUsers }) => {
+  
     const [formData, setFormData] = useState({
       firstName: selectedUser?.firstName || "",
       lastName: selectedUser?.lastName || "",
@@ -28,55 +30,96 @@ const UserFormModel = ({selectedUser,closeModal,refreshUsers}) => {
       });
     };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
 
-      if (!formData.firstName || !formData.lastName || !formData.email) {
-        alert("Please fill required fields");
-        return;
-      }
+    //   if (!formData.firstName || !formData.lastName || !formData.email) {
+    //     alert("Please fill required fields");
+    //     return;
+    //   }
 
-      const payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        age: formData.age,
-        gender: formData.gender,
-        role: formData.role,
-        image: formData.image,
+    //   const payload = {
+    //     id:selectedUser ? selectedUser.id : Date.now(),
+    //     firstName: formData.firstName,
+    //     lastName: formData.lastName,
+    //     email: formData.email,
+    //     phone: formData.phone,
+    //     age: formData.age,
+    //     gender: formData.gender,
+    //     role: formData.role,
+    //     image: formData.image || null,
 
-        address: {
-          address: formData.address,
-          city: formData.city,
-          state: formData.state,
-          country: formData.country,
-        },
+    //     address: {
+    //       address: formData.address,
+    //       city: formData.city,
+    //       state: formData.state,
+    //       country: formData.country,
+    //     },
 
-        company: {
-          name: formData.companyName,
-          department: formData.department,
-          title: formData.title,
-        },
-      };
+    //     company: {
+    //       name: formData.companyName,
+    //       department: formData.department,
+    //       title: formData.title,
+    //     },
+    //   };
 
-      try {
-        if (selectedUser) {
-          await updateUser(selectedUser.id, payload);
-        } else {
-            //   await addUser(payload);
-            const response = await addUser(payload);
+    //   try {
+    //     if (selectedUser) {
+    //       await updateUser(selectedUser.id, payload);
+    //     } else {
+    //         //   await addUser(payload);
+    //         const response = await addUser(payload);
 
-            refreshUsers(response.data);
-        }
+    //         refreshUsers(response.data);
+    //     }
 
-          refreshUsers();
-        closeModal();
-      } catch (error) {
-          console.log(error)
-        alert("Something went wrong");
-      }
+    //       // refreshUsers();
+    //     closeModal();
+    //   } catch (error) {
+    //       console.log(error)
+    //     alert("Something went wrong");
+    //   }
+    // };
+  
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.firstName || !formData.lastName || !formData.email) {
+      alert("Please fill required fields");
+      return;
+    }
+
+    const payload = {
+      id: selectedUser ? selectedUser.id : Date.now(),
+
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      age: formData.age,
+      gender: formData.gender,
+      role: formData.role,
+      image: formData.image || "https://dummyjson.com/icon/user/128",
+
+      address: {
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+      },
+
+      company: {
+        name: formData.companyName,
+        department: formData.department,
+        title: formData.title,
+      },
     };
+
+    refreshUsers(payload, !!selectedUser);
+
+    closeModal();
+  };
   return (
     <div className="modal-overlay">
       <div className="modal large-modal">

@@ -172,6 +172,18 @@ td {
 .details-section {
   margin-top: 20px;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: #2563eb;
+  color: white;
+}
 
 @keyframes spin {
   to {

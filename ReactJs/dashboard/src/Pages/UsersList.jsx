@@ -3,7 +3,7 @@ import ConfirmModel from "../Components/ConfirmModel";
 import Loader from "../Components/Loader";
 import UserFormModel from "../Components/UserFormModel";
 import UserTable from "../Components/UserTable";
-import { deleteUser, getUsers, searchUsers } from "../utils/api";
+import {  getUsers, searchUsers } from "../utils/api";
 
 
 const UsersList = () => {
@@ -26,7 +26,10 @@ const UsersList = () => {
 
      const [selectedUser, setSelectedUser] = useState(null);
 
-    const [deleteId, setDeleteId] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const usersPerPage = 10;
 
 
     useEffect(() => {
@@ -51,11 +54,21 @@ const UsersList = () => {
        }
     };
     
-    const addNewUserToList = (newUser) => {
-      setUsers((prev) => [newUser, ...prev]);
+  const refreshUsers = (userData, isEdit) => {
+    if (isEdit) {
+      const updatedUsers = users.map((user) =>
+        user.id === userData.id ? userData : user,
+      );
 
-      setFilteredUsers((prev) => [newUser, ...prev]);
-    };
+      setUsers(updatedUsers);
+      setFilteredUsers(updatedUsers);
+    } else {
+      const updatedUsers = [userData, ...users];
+
+      setUsers(updatedUsers);
+      setFilteredUsers(updatedUsers);
+    }
+  };
 
 
      const handleSearch = async (value) => {
@@ -116,21 +129,24 @@ const UsersList = () => {
        setFilteredUsers(sorted);
      };
 
-     const handleDelete = async () => {
-       try {
-         await deleteUser(deleteId);
+     const handleDelete = () => {
+       const updatedUsers = users.filter((user) => user.id !== deleteId);
 
-         const updatedUsers = users.filter((user) => user.id !== deleteId);
+       setUsers(updatedUsers);
 
-         setUsers(updatedUsers);
-         setFilteredUsers(updatedUsers);
+       setFilteredUsers(updatedUsers);
 
-         setDeleteId(null);
-       } catch (error) {
-           console.log(error)
-         alert("Delete failed");
-       }
-     };
+       setDeleteId(null);
+  };
+  
+
+  const indexOfLastUser = currentPage * usersPerPage;
+
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
   return (
     <>
       <div className="container">
@@ -179,14 +195,35 @@ const UsersList = () => {
         ) : error ? (
           <h3>{error}</h3>
         ) : (
-          <UserTable
-            users={filteredUsers}
-            openEditModal={(user) => {
-              setSelectedUser(user);
-              setShowModal(true);
-            }}
-            openDeleteModal={(id) => setDeleteId(id)}
-          />
+          <>
+            <UserTable
+              users={currentUsers}
+              openEditModal={(user) => {
+                setSelectedUser(user);
+                setShowModal(true);
+              }}
+              openDeleteModal={(id) => setDeleteId(id)}
+            />
+            <div className="pagination">
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+              >
+                Prev
+              </button>
+
+              <span>
+                Page {currentPage} of {totalPages}
+              </span>
+
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </>
         )}
       </div>
 
@@ -197,7 +234,7 @@ const UsersList = () => {
             setShowModal(false);
             setSelectedUser(null);
           }}
-          refreshUsers={addNewUserToList}
+          refreshUsers={refreshUsers}
         />
       )}
 
