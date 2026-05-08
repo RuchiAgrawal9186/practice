@@ -44,14 +44,17 @@ https://dummyjson.com/users
 ## Run Project
 
 ```bash
-git clone YOUR_GITHUB_REPO_LINK
-cd user-management-dashboard
+git clone https://github.com/RuchiAgrawal9186/practice.git
+cd Reactjs/dashboard
 npm install
-npm run dev ```
-
-## folder structure
-
+npm run dev
 ```
+
+---
+
+## Folder Structure
+
+```bash
 src/
  ├── Components/
  ├── Pages/
@@ -59,5 +62,4 @@ src/
  ├── styles/
  ├── App.jsx
  └── main.jsx
-
 ```
