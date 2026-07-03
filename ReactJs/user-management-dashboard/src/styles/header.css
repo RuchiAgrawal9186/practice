@@ -1,55 +1,130 @@
+/* ===== Header ===== */
+
 .header {
+  background: #ffffff;
+
+  padding: 20px 25px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  gap: 20px;
-  flex-wrap: wrap;
+
+  margin-bottom: 25px;
+}
+
+.header-left h1 {
+  color: #312e81;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .header-right {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.header input,
-.header select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.header-right input {
+  width: 200px;
+  height: 44px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dbe2ef;
+  border-radius: 10px;
+
+  background: white;      /* FIX */
+
+  color: #1e293b;
+
+  font-size: 15px;
+
+  outline: none;
 }
+
+.header-right input::placeholder {
+  color: #94a3b8;
+}
+
+.header-right select {
+  width: 140px;           /* FIX */
+
+  height: 44px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dbe2ef;
+  border-radius: 10px;
+
+  background: white;
+
+  color: #334155;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+/* Buttons */
 
 .add-btn,
 .filter-btn {
-  padding: 10px 20px;
   border: none;
-  background: #1976d2;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
   color: white;
-  border-radius: 5px;
+
   cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.3s ease;
 }
 
-.add-btn:hover,
+.add-btn {
+  background: #4f46e5;
+}
+
+.add-btn:hover {
+  background: #4338ca;
+}
+
+.filter-btn {
+  background: #06b6d4;
+}
+
 .filter-btn:hover {
-  opacity: 0.9;
+  background: #0891b2;
 }
 
 /* Responsive */
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    align-items: stretch;
   }
 
   .header-right {
-    width: 100%;
     flex-direction: column;
   }
 
-  .header input,
-  .header select,
-  .header button {
+  .header-right input{
+width:92%;
+  }
+
+  .header-right select,
+  .header-right button {
     width: 100%;
   }
 }

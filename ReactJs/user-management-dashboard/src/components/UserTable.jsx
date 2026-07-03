@@ -29,9 +29,18 @@ const userTable = ({ users, onEdit, onDelete }) => {
             <td>{user.department}</td>
 
             <td>
-              <button onClick={() => onEdit(user)}>Edit</button>
+              <div className="action-buttons">
+                <button className="edit-btn" onClick={() => onEdit(user)}>
+                  Edit
+                </button>
 
-              <button onClick={() => onDelete(user.id)}>Delete</button>
+                <button
+                  className="delete-btn"
+                  onClick={() => onDelete(user.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </td>
           </tr>
         ))}

@@ -108,9 +108,11 @@ const UserModal = ({ user, onClose, onSave }) => {
           <small>{errors.department}</small>
 
           <div className="actions">
-            <button type="submit">Save</button>
+            <button className="save-btn" type="submit">
+              Save
+            </button>
 
-            <button type="button" onClick={onClose}>
+            <button className="cancel-btn" type="button" onClick={onClose}>
               Cancel
             </button>
           </div>

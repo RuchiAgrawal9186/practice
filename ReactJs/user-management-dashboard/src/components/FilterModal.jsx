@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "../styles/modal.css"
 
 const filterModal = ({ users, setDisplayUsers, close }) => {
     const [filters, setFilters] =
@@ -94,7 +95,16 @@ const filterModal = ({ users, setDisplayUsers, close }) => {
           <option>Marketing</option>
         </select>
 
-        <button onClick={applyFilter}>Apply</button>
+        <div className="filter-actions">
+          <button className="apply-btn" onClick={applyFilter}>
+            Apply
+          </button>
+
+          <button className="reset-btn" onClick={close}>
+            Close
+          </button>
+        </div>
+        {/* <button onClick={applyFilter}>Apply</button> */}
       </div>
     </div>
   );

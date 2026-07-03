@@ -1,31 +1,95 @@
+.table-container {
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 16px;
+
+  overflow-x: auto;
+
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 15px;
+thead {
+  background: #4f46e5;
 }
 
-th {
-  background: #f5f5f5;
+thead th {
+  color: white;
+
+  padding: 18px;
+
+  text-align: left;
+
+  font-weight: 600;
 }
 
-tr:hover {
-  background: #fafafa;
+tbody td {
+  padding: 16px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  color: #334155;
 }
 
-button {
-  margin: 5px;
-  padding: 8px 12px;
+tbody tr {
+  transition: 0.2s;
+}
+
+tbody tr:hover {
+  background: #eef2ff;
+}
+
+/* Buttons */
+
+.edit-btn {
+  background: #10b981;
+
+  color: white;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  margin-right: 8px;
+
   cursor: pointer;
 }
 
+.edit-btn:hover {
+  background: #059669;
+}
 
-/* Responsive */
+.delete-btn {
+  background: #ef4444;
+
+  color: white;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
 @media (max-width: 768px) {
+  .table-container {
+    padding: 10px;
+  }
+
   table {
     display: block;
     overflow-x: auto;
