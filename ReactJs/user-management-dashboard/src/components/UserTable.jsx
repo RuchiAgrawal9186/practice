@@ -1,4 +1,5 @@
 import React from 'react'
+import "../styles/table.css"
 
 const userTable = ({ users, onEdit, onDelete }) => {
   return (

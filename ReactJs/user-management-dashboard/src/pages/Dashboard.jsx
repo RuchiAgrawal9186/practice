@@ -5,125 +5,181 @@ import UserTable from "../components/UserTable";
 import Loder from "../components/Loder";
 import Pagination from "../components/Pagination";
 import UserModal from "../components/UserModal";
+import EmptyState from "../components/EmptyState";
+import FilterModal from "../components/FilterModal";
+import "../styles/dashboard.css"
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [displayUsers, setDisplayUsers] = useState([]);
+ const [users, setUsers] = useState([]);
+ const [displayUsers, setDisplayUsers] = useState([]);
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+ const [loading, setLoading] = useState(false);
+ const [error, setError] = useState("");
 
-  const [showModal, setShowModal] = useState(false);
+ const [search, setSearch] = useState("");
+ const [sort, setSort] = useState("");
 
-  const [selectedUser, setSelectedUser] = useState(null);
+ const [page, setPage] = useState(1);
+ const [limit, setLimit] = useState(10);
 
-  const [search, setSearch] = useState("");
+ const [selectedUser, setSelectedUser] = useState(null);
 
-  const [page, setPage] = useState(1);
+ const [showModal, setShowModal] = useState(false);
+ const [showFilter, setShowFilter] = useState(false);
 
-  const [limit, setLimit] = useState(10);
+ useEffect(() => {
+   fetchUsers();
+ }, []);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+ async function fetchUsers() {
+   try {
+     setLoading(true);
 
-  async function fetchUsers() {
-    try {
-      setLoading(true);
+     const response = await getUsers();
 
-      const res = await getUsers();
+     const formattedUsers = response.data.map((user, index) => ({
+       id: user.id,
+       firstName: user.name.split(" ")[0],
+       lastName: user.name.split(" ")[1] || "",
+       email: user.email,
+       department: ["IT", "HR", "Finance", "Marketing"][index % 4],
+     }));
 
-      const formatted = res.data.map((user, index) => ({
-        id: user.id,
-        firstName: user.name.split(" ")[0],
-        lastName: user.name.split(" ")[1] || "",
-        email: user.email,
-        department: ["IT", "HR", "Finance", "Marketing"][index % 4],
-      }));
+     setUsers(formattedUsers);
+     setDisplayUsers(formattedUsers);
+   } catch (err) {
+     setError("Failed to fetch users");
+   } finally {
+     setLoading(false);
+   }
+ }
 
-      setUsers(formatted);
-      setDisplayUsers(formatted);
-    } catch {
-      setError("Failed to fetch users.");
-    } finally {
-      setLoading(false);
-    }
-  }
+ // SEARCH
+ function handleSearch(value) {
+   setSearch(value);
 
-  function handleSearch(value) {
-    setSearch(value);
+   const filtered = users.filter((user) =>
+     `${user.firstName} ${user.lastName} ${user.email} ${user.department}`
+       .toLowerCase()
+       .includes(value.toLowerCase()),
+   );
 
-    const filtered = users.filter((user) =>
-      Object.values(user).join(" ").toLowerCase().includes(value.toLowerCase()),
-    );
+   setDisplayUsers(filtered);
+   setPage(1);
+ }
 
-    setDisplayUsers(filtered);
-    setPage(1);
-  }
+ // SORT
+ function handleSort(type) {
+   setSort(type);
 
-  async function handleAdd(user) {
-    await addUser(user);
+   if (!type) return;
 
-    const newUser = {
-      ...user,
-      id: Date.now(),
-    };
+   const sorted = [...displayUsers];
 
-    const updated = [...users, newUser];
+   sorted.sort((a, b) => a[type].localeCompare(b[type]));
 
-    setUsers(updated);
-    setDisplayUsers(updated);
-  }
+   setDisplayUsers(sorted);
+ }
 
-  async function handleUpdate(user) {
-    await updateUser(user.id, user);
+ // ADD
+ async function handleAdd(user) {
+   try {
+     await addUser(user);
 
-    const updated = users.map((u) => (u.id === user.id ? user : u));
+     const newUser = {
+       ...user,
+       id: Date.now(),
+     };
 
-    setUsers(updated);
-    setDisplayUsers(updated);
-  }
+     const updated = [...users, newUser];
 
-  async function handleDelete(id) {
-    const confirmDelete = window.confirm("Delete this user?");
+     setUsers(updated);
+     setDisplayUsers(updated);
+   } catch {
+     alert("Unable to add user");
+   }
+ }
 
-    if (!confirmDelete) return;
+ // UPDATE
+ async function handleUpdate(user) {
+   try {
+     await updateUser(user.id, user);
 
-    await deleteUser(id);
+     const updated = users.map((u) => (u.id === user.id ? user : u));
 
-    const updated = users.filter((u) => u.id !== id);
+     setUsers(updated);
+     setDisplayUsers(updated);
+   } catch {
+     alert("Unable to update user");
+   }
+ }
 
-    setUsers(updated);
-    setDisplayUsers(updated);
-  }
+ // DELETE
+ async function handleDelete(id) {
+   const confirmDelete = window.confirm(
+     "Are you sure you want to delete this user?",
+   );
 
-  const start = (page - 1) * limit;
+   if (!confirmDelete) return;
 
-  const paginated = displayUsers.slice(start, start + limit);
+   try {
+     await deleteUser(id);
+
+     const updated = users.filter((u) => u.id !== id);
+
+     setUsers(updated);
+     setDisplayUsers(updated);
+   } catch {
+     alert("Unable to delete user");
+   }
+ }
+
+ const start = (page - 1) * limit;
+ const paginatedUsers = displayUsers.slice(start, start + limit);
 
   return (
     <div className="dashboard">
       <Header
         search={search}
-        setSearch={handleSearch}
-        openModal={() => {
+        handleSearch={handleSearch}
+        handleSort={handleSort}
+        openAdd={() => {
           setSelectedUser(null);
-
           setShowModal(true);
         }}
+        openFilter={() => setShowFilter(true)}
       />
+
+      {/* Stats Cards */}
+      <div className="stats">
+        <div className="card">
+          <h3>Total Users</h3>
+          <p>{users.length}</p>
+        </div>
+
+        <div className="card">
+          <h3>Departments</h3>
+          <p>4</p>
+        </div>
+
+        <div className="card">
+          <h3>Showing</h3>
+          <p>{paginatedUsers.length}</p>
+        </div>
+      </div>
 
       {loading && <Loder />}
 
-      {error && <h3>{error}</h3>}
+      {error && <div className="error">{error}</div>}
 
-      {!loading && (
+      {!loading && displayUsers.length === 0 && <EmptyState />}
+
+      {!loading && displayUsers.length > 0 && (
         <>
           <UserTable
-            users={paginated}
+            users={paginatedUsers}
             onEdit={(user) => {
               setSelectedUser(user);
-
               setShowModal(true);
             }}
             onDelete={handleDelete}
@@ -139,11 +195,21 @@ const Dashboard = () => {
         </>
       )}
 
+      {/* ADD / EDIT */}
       {showModal && (
         <UserModal
           user={selectedUser}
           onClose={() => setShowModal(false)}
           onSave={selectedUser ? handleUpdate : handleAdd}
+        />
+      )}
+
+      {/* FILTER */}
+      {showFilter && (
+        <FilterModal
+          users={users}
+          setDisplayUsers={setDisplayUsers}
+          close={() => setShowFilter(false)}
         />
       )}
     </div>
