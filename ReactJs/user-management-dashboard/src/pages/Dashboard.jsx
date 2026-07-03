@@ -1,102 +1,105 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { addUser, deleteUser, getUsers, updateUser } from "../api/userApi";
+import Header from "../components/Header";
+import UserTable from "../components/UserTable";
+import Loder from "../components/Loder";
+import Pagination from "../components/Pagination";
+import UserModal from "../components/UserModal";
 
 const Dashboard = () => {
-    const [users, setUsers] = useState([]);
-    const [displayUsers, setDisplayUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [displayUsers, setDisplayUsers] = useState([]);
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-    const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-    const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
-    const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(10);
 
-    useEffect(() => {
-      fetchUsers();
-    }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
-    async function fetchUsers() {
-      try {
-        setLoading(true);
+  async function fetchUsers() {
+    try {
+      setLoading(true);
 
-        const res = await getUsers();
+      const res = await getUsers();
 
-        const formatted = res.data.map((user, index) => ({
-          id: user.id,
-          firstName: user.name.split(" ")[0],
-          lastName: user.name.split(" ")[1] || "",
-          email: user.email,
-          department: ["IT", "HR", "Finance", "Marketing"][index % 4],
-        }));
+      const formatted = res.data.map((user, index) => ({
+        id: user.id,
+        firstName: user.name.split(" ")[0],
+        lastName: user.name.split(" ")[1] || "",
+        email: user.email,
+        department: ["IT", "HR", "Finance", "Marketing"][index % 4],
+      }));
 
-        setUsers(formatted);
-        setDisplayUsers(formatted);
-      } catch {
-        setError("Failed to fetch users.");
-      } finally {
-        setLoading(false);
-      }
+      setUsers(formatted);
+      setDisplayUsers(formatted);
+    } catch {
+      setError("Failed to fetch users.");
+    } finally {
+      setLoading(false);
     }
+  }
 
-    function handleSearch(value) {
-      setSearch(value);
+  function handleSearch(value) {
+    setSearch(value);
 
-      const filtered = users.filter((user) =>
-        Object.values(user)
-          .join(" ")
-          .toLowerCase()
-          .includes(value.toLowerCase()),
-      );
+    const filtered = users.filter((user) =>
+      Object.values(user).join(" ").toLowerCase().includes(value.toLowerCase()),
+    );
 
-      setDisplayUsers(filtered);
-      setPage(1);
-    }
+    setDisplayUsers(filtered);
+    setPage(1);
+  }
 
-    async function handleAdd(user) {
-      await addUser(user);
+  async function handleAdd(user) {
+    await addUser(user);
 
-      const newUser = {
-        ...user,
-        id: Date.now(),
-      };
+    const newUser = {
+      ...user,
+      id: Date.now(),
+    };
 
-      const updated = [...users, newUser];
+    const updated = [...users, newUser];
 
-      setUsers(updated);
-      setDisplayUsers(updated);
-    }
+    setUsers(updated);
+    setDisplayUsers(updated);
+  }
 
-    async function handleUpdate(user) {
-      await updateUser(user.id, user);
+  async function handleUpdate(user) {
+    await updateUser(user.id, user);
 
-      const updated = users.map((u) => (u.id === user.id ? user : u));
+    const updated = users.map((u) => (u.id === user.id ? user : u));
 
-      setUsers(updated);
-      setDisplayUsers(updated);
-    }
+    setUsers(updated);
+    setDisplayUsers(updated);
+  }
 
-    async function handleDelete(id) {
-      const confirmDelete = window.confirm("Delete this user?");
+  async function handleDelete(id) {
+    const confirmDelete = window.confirm("Delete this user?");
 
-      if (!confirmDelete) return;
+    if (!confirmDelete) return;
 
-      await deleteUser(id);
+    await deleteUser(id);
 
-      const updated = users.filter((u) => u.id !== id);
+    const updated = users.filter((u) => u.id !== id);
 
-      setUsers(updated);
-      setDisplayUsers(updated);
-    }
+    setUsers(updated);
+    setDisplayUsers(updated);
+  }
 
-    const start = (page - 1) * limit;
+  const start = (page - 1) * limit;
 
-    const paginated = displayUsers.slice(start, start + limit);
+  const paginated = displayUsers.slice(start, start + limit);
 
   return (
     <div className="dashboard">
@@ -110,7 +113,7 @@ const Dashboard = () => {
         }}
       />
 
-      {loading && <Loader />}
+      {loading && <Loder />}
 
       {error && <h3>{error}</h3>}
 
@@ -145,6 +148,6 @@ const Dashboard = () => {
       )}
     </div>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

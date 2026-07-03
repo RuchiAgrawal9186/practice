@@ -1,11 +1,7 @@
 import React from 'react'
 
 const Loder = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <h2>Loading...</h2>;
 }
 
 export default Loder
