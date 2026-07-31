@@ -1,27 +1,29 @@
 import { IconMenu2 } from "@tabler/icons-react";
 
 type MainHeaderProps = {
+ 
   onMenuClick: () => void;
 };
 
 const MainHeader = ({ onMenuClick }: MainHeaderProps) => {
   return (
     <header className=" flex border-b border-gray-200 h-14  bg-white items-center justify-between px-3">
-      <div className="flex items-center">
-        <button onClick={onMenuClick} className="mr-3 md:hidden">
-          <IconMenu2 size={22} />
-        </button>
+      
+        <div className="flex items-center md:hidden lg:hidden">
+          <button onClick={onMenuClick} className="mr-1 ">
+            <IconMenu2 size={22} />
+          </button>
+        </div>
+     
 
-        {/* <h1 className="text-xl font-bold">Dashboard</h1> */}
-      </div>
       {/* left section logo and name */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <div className="flex h-8 w-8 items-center justify-center">
           <span className="text-[30px] font-bold leading-none text-[#E20074]">
             T
           </span>
         </div>
-        <h1 className="text-lg font-bold uppercase tracking-wide">
+        <h1 className="text-sm md:text-lg lg:text-lg font-bold uppercase tracking-wide">
           Audience Intelligence Platform
         </h1>
       </div>

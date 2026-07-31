@@ -11,12 +11,12 @@ type SegmentTabsProps = {
 
 const SegmentTabs = ({ activeTab, setActiveTab }: SegmentTabsProps) => {
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-white shadow-2xl p-1 ">
+    <div className="flex items-center gap-2 rounded-lg bg-white shadow-2xl p-1 w-max min-w-full">
       {segmentTabsData?.map((tab) => (
         <button
           key={tab.id}
           onClick={() => setActiveTab(tab.value)}
-          className={`flex items-center rounded-md px-4 py-1 text-sm font-medium transition-all cursor-pointer duration-200 ${
+          className={`flex items-center rounded-md px-4 py-1 text-sm font-medium shrink-0 whitespace-nowrap transition-all cursor-pointer duration-200 ${
             activeTab === tab.value
               ? "bg-gray-600 text-white shadow-sm"
               : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"

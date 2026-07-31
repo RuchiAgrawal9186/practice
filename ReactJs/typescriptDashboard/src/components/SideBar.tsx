@@ -44,9 +44,9 @@
 
 // export default SideBar;
 
-
 import { NavLink } from "react-router-dom";
 import { sidebarMenu } from "../constants/SideBarData";
+import { IconX } from "@tabler/icons-react";
 
 type SideBarProps = {
   isOpen: boolean;
@@ -60,8 +60,8 @@ const SideBar = ({ isOpen, onClose }: SideBarProps) => {
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
-        />
+          className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+        ></div>
       )}
 
       {/* Sidebar */}
@@ -89,7 +89,14 @@ const SideBar = ({ isOpen, onClose }: SideBarProps) => {
           lg:w-60
         `}
       >
-        <nav className="flex-1 p-2 mt-16 md:mt-0">
+        <div
+          className="flex flex-end items-center justify-end md:hidden lg:hidden"
+          onClick={onClose}
+        >
+          <IconX stroke={2} />
+        </div>
+
+        <nav className="flex-1 p-2 mt-5 md:mt-0">
           <ul className="space-y-1">
             {sidebarMenu.map((item) => {
               const Icon = item.icon;
@@ -122,7 +129,7 @@ const SideBar = ({ isOpen, onClose }: SideBarProps) => {
                   >
                     <Icon size={20} />
 
-                    <span className="ml-3  text-sm font-medium lg:block">
+                    <span className="ml-3 text-sm font-medium lg:block md:hidden">
                       {item.title}
                     </span>
                   </NavLink>

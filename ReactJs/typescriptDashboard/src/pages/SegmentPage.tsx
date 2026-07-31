@@ -17,7 +17,7 @@ const SegmentPage = () => {
     <div className="">
       <h6 className="text-[10px] text-gray-500">SEGMENTS</h6>
       {/* <SegmentHeader /> */}
-                 {/* segment header */}
+      {/* segment header */}
       <div className="flex flex-1 items-center justify-between">
         <div>
           <h3 className="font-bold text-2xl ">Audience Segments</h3>
@@ -29,14 +29,31 @@ const SegmentPage = () => {
         <CreateButton></CreateButton>
       </div>
 
-                {/* segment toolbar */}
-      <div className="flex flex-1 items-center justify-between mt-5">
+      {/* segment toolbar */}
+      {/* <div className="xl:flex md:flex lg:flex md:flex-1 lg:flex-1 items-center justify-between mt-5">
         <SegmentTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
         <div className="flex items-center gap-2">
           <SearchBar />
           <SortDropDown />
           <ViewSwitcher view={view} setView={setView} />
+        </div>
+      </div> */}
+
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mt-5 ">
+        {/* Segment Tabs - full width/scrolling on mobile, auto on tablet+ */}
+        <div className="w-full md:w-auto lg:w-auto overflow-x-auto pb-2 md:pb-0">
+          <SegmentTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
+
+        {/* Control Actions */}
+        <div className="flex flex-col  lg:flex-row  gap-2 w-full md:w-auto justify-between ">
+          <div className="flex-1  w-full ">
+            <SearchBar />
+          </div>
+          <div className="flex items-center gap-2 w-full">
+            <SortDropDown />
+            <ViewSwitcher view={view} setView={setView} />
+          </div>
         </div>
       </div>
 
